@@ -1,1 +1,5 @@
 celery[redis]
+# heaavy dependencies
+numpy
+pandas
+scipy
