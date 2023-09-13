@@ -25,3 +25,14 @@ def inspect_pid_and_thread():
     info = f"Current Process ID: {os.getpid()}, Current Thread native id: {threading.get_native_id()}, Current Thread Name: {threading.current_thread().name}"
     print(info)
     return info
+
+@app.task
+def measure_tf_import():
+    start_time = time.time()
+    import tensorflow as tf
+    end_time = time.time()
+    info = f"Time taken to import tensorflow: {end_time - start_time}"
+    print(info)
+    return info
+
+    
