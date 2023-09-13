@@ -3,5 +3,5 @@ result_backend='redis://redis:6379/1'
 
 imports = ('tasks', )
 
-worker_concurrency = 1
-worker_pool = 'solo'
+worker_concurrency = 4
+# worker_pool = 'solo'

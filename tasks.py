@@ -22,7 +22,7 @@ def my_dummy_task(arg1: int, arg2: str) -> str:
 @app.task
 def inspect_pid_and_thread():
     time.sleep(10)
-    info = f"Current Process ID: {os.getpid()}, Current Thread native id: {threading.get_native_id()}, Current Thread Name: {threading.current_thread().name}"
+    info = f"Current Process ID: {os.getpid()}; Parent Process ID: {os.getppid()} Current Thread native id: {threading.get_native_id()}, Current Thread Name: {threading.current_thread().name}"
     print(info)
     return info
 
@@ -31,8 +31,13 @@ def measure_tf_import():
     start_time = time.time()
     import tensorflow as tf
     end_time = time.time()
-    info = f"Time taken to import tensorflow: {end_time - start_time}"
+    pid_info = f"Current Process ID: {os.getpid()}; Parent Process ID: {os.getppid()} Current Thread native id: {threading.get_native_id()}, Current Thread Name: {threading.current_thread().name}"
+    info = f"Time taken to import tensorflow: {end_time - start_time};\n{pid_info}"
     print(info)
+    time.sleep(10)
     return info
 
+@app.task
+def failing_task():
+    raise ValueError("This task always fails!")
     

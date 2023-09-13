@@ -16,7 +16,8 @@ services:
 
   client:
     image: raulronald/dummy-celery-client:latest
-    command: /bin/sh -c "python other_codebase_client.py && python other_codebase_client.py && tail -f /dev/null"
+    # command: /bin/sh -c "python other_codebase_client.py && python other_codebase_client.py && tail -f /dev/null"
+    command: /bin/sh -c "tail -f /dev/null"
     depends_on:
       - redis
       - worker
